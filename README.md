@@ -22,7 +22,7 @@ PDAC (pancreatic ductal adenocarcinoma) accounts for 90% of pancreatic cancers a
 
 ## Project Site
 
-🌐 **[https://imonban.github.io/PRECISE](https://github.com)**
+🌐 **[https://imonban.github.io/PRECISE](https://imonban.github.io/PRECISE)**
 
 ---
 
