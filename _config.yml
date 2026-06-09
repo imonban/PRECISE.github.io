@@ -1,13 +1,60 @@
-# GitHub Pages configuration for FUSE-PDAC
-title: "FUSE-PDAC | R01CA289249"
-description: "Multimodal AI Fusion Model for Early Detection of Pancreatic Cancer. NIH NCI R01CA289249, PI: Imon Banerjee PhD, Mayo Clinic & Arizona State University."
-url: ""
+# ─────────────────────────────────────────────────────────────
+# GitHub Pages — FUSE-PDAC  |  NIH R01CA289249
+# ─────────────────────────────────────────────────────────────
+
+# Site identity
+title:       "FUSE-PDAC | R01CA289249"
+description: >
+  Multimodal AI Fusion Model for Early Detection of Pancreatic Cancer.
+  NIH NCI R01CA289249. Principal Investigators: Imon Banerjee PhD
+  (Mayo Clinic / ASU) and Yifan Peng PhD (Weill Cornell Medicine).
+
+# URLs — leave blank for a repo site (username.github.io/repo-name)
+# Set url to your GitHub Pages domain once the repo is live, e.g.:
+# url: "https://BanerjeeLabMayo.github.io"
+# baseurl: "/fuse-pdac"
+url:     ""
 baseurl: ""
 
-# Exclude non-site files from build
+# Author / contact
+author:
+  name:  "Imon Banerjee, PhD"
+  email: "Banerjee.Imon@mayo.edu"
+
+# Grant metadata (custom; available as site.grant.* in Liquid templates)
+grant:
+  number:      "R01CA289249"
+  funder:      "National Cancer Institute (NCI), NIH"
+  title:       "Multimodal AI Fusion Model for Early Detection of Pancreatic Cancer (FUSE-PDAC)"
+  period:      "09/01/2024 – 08/31/2029"
+  pi:          "Imon Banerjee, PhD"
+  mpi:         "Yifan Peng, PhD"
+  institutions:
+    - "Mayo Clinic, Scottsdale / Phoenix, AZ"
+    - "Arizona State University, Tempe, AZ"
+    - "Weill Cornell Medicine, New York, NY"
+    - "University of California, San Francisco, CA"
+
+# Build settings — pure static HTML, no theme needed
+theme:    null
+plugins:  []
+
+# Files to exclude from the Jekyll build
 exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - "*.sh"
+  - .DS_Store
 
-# No Jekyll theme needed — pure HTML/CSS/JS
+# Do not process these as Jekyll pages
+include:
+  - .nojekyll
+
+# Encoding & markdown (defaults; explicit for reproducibility)
+encoding:        "utf-8"
+markdown:        kramdown
+highlighter:     rouge
+
+# SEO / social
+lang: "en-US"

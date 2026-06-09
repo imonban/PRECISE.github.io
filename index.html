@@ -477,6 +477,21 @@
       padding: 1px 7px;
       border-radius: 20px;
     }
+    .pub-award {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 8px;
+      font-style: normal;
+      font-size: .68rem;
+      font-family: var(--font-mono);
+      background: rgba(245,158,11,.15);
+      border: 1px solid rgba(245,158,11,.45);
+      color: var(--amber);
+      padding: 1px 8px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
 
     /* ── MILESTONES ────────────────────────────────────────── */
     .timeline { position: relative; padding-left: 36px; }
@@ -651,7 +666,7 @@
       <span class="sub">Multimodal AI Fusion Model for Early Detection<br>of Pancreatic Cancer</span>
     </h1>
     <p class="hero-desc">
-      Pancreatic ductal adenocarcinoma (PDAC) is diagnosed late in over 85% of cases, when curative resection is no longer an option. FUSE-PDAC fuses pre-cancerous CT imaging biomarkers with electronic medical record data through a graph neural network — the <strong>PRECISE</strong> model — to enable opportunistic, equitable risk stratification at population scale.
+      Pancreatic ductal adenocarcinoma (PDAC) is diagnosed late in over 85% of cases, when curative resection is no longer an option. FUSE-PDAC fuses pre-cancerous CT imaging biomarkers with electronic medical record data through a vision-language foundation model — the <strong>PRECISE</strong> model — to enable opportunistic, equitable risk stratification at population scale.
     </p>
     <div class="hero-ctas">
       <a href="#aims" class="btn btn-primary">Specific Aims ↓</a>
@@ -685,7 +700,7 @@
   <div class="container">
     <p class="eyebrow">The PRECISE Model</p>
     <h2 class="section-title">Fusing Imaging &amp; Clinical Data<br>to Predict PDAC Risk</h2>
-    <p class="section-sub">The core algorithmic contribution: a multimodal graph neural network that jointly encodes abdominopelvic CT biomarkers and longitudinal EMR data to produce unbiased, patient-specific risk scores.</p>
+    <p class="section-sub">The core algorithmic contribution: a multimodal vision-language foundation model that jointly encodes abdominopelvic CT biomarkers and longitudinal EMR data to produce unbiased, patient-specific risk scores.</p>
 
     <!-- SIGNATURE ELEMENT: Animated fusion diagram -->
     <div class="fusion-diagram reveal">
@@ -712,7 +727,7 @@
         <text x="270" y="177" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Longitudinal data</text>
 
         <!-- PRECISE Model (center) -->
-        <text x="430" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="3" fill="#00c8e0" opacity=".7">GNN · FUSION</text>
+        <text x="430" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="3" fill="#00c8e0" opacity=".7">VLM · FUSION</text>
         <text x="430" y="115" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f0f6ff">PRECISE</text>
         <text x="430" y="135" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">PancREas Cancer</text>
         <text x="430" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">multImodal riSk</text>
@@ -720,7 +735,7 @@
         <rect x="380" y="183" width="100" height="22" rx="4" fill="rgba(0,200,224,.12)" stroke="rgba(0,200,224,.3)" stroke-width="1"/>
         <text x="430" y="198" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#00c8e0">Adversarial Debiasing</text>
         <rect x="380" y="210" width="100" height="22" rx="4" fill="rgba(139,92,246,.12)" stroke="rgba(139,92,246,.3)" stroke-width="1"/>
-        <text x="430" y="225" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#a78bfa">Graph Neural Net</text>
+        <text x="430" y="225" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#a78bfa">Vision-Language Model</text>
 
         <!-- Validation -->
         <text x="590" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" fill="#10b981" opacity=".85">⬡</text>
@@ -777,8 +792,8 @@
         <div>
           <p class="aim-label">Aim 2 · Multimodal Fusion Model</p>
           <h3>Develop PRECISE: A Fair, Graph-Based Multimodal Risk Model</h3>
-          <p>Train the PRECISE graph neural network to fuse imaging biomarkers (Aim 1) with longitudinal EMR features — CA19-9 trajectories, diabetes onset patterns, weight loss signals, and prior pancreatitis history. Incorporate adversarial debiasing to ensure equitable performance across race, sex, and socioeconomic strata. Benchmark against clinical risk scores (ENDPAC, CAPS) and unimodal AI baselines.</p>
-          <span class="aim-tag">GNN · EMR · Fairness · Graph Fusion</span>
+          <p>Train the PRECISE vision-language foundation model to fuse imaging biomarkers (Aim 1) with longitudinal EMR features — CA19-9 trajectories, diabetes onset patterns, weight loss signals, and prior pancreatitis history. Incorporate adversarial debiasing to ensure equitable performance across race, sex, and socioeconomic strata. Benchmark against clinical risk scores (ENDPAC, CAPS) and conventional CNN baselines.</p>
+          <span class="aim-tag">VLM · EMR · Fairness · Multimodal Fusion</span>
         </div>
       </div>
       <div class="aim-item reveal">
@@ -819,9 +834,9 @@
           <p>Longitudinal labs, diagnoses, medications, NLP</p>
         </div>
         <div class="pipe-step">
-          <div class="pipe-icon gnn">🔗</div>
-          <h4>PRECISE GNN</h4>
-          <p>Graph fusion with adversarial debiasing</p>
+          <div class="pipe-icon gnn">🤖</div>
+          <h4>PRECISE VLM</h4>
+          <p>Vision-language fusion with adversarial debiasing</p>
         </div>
         <div class="pipe-step">
           <div class="pipe-icon out">📊</div>
@@ -867,32 +882,39 @@
         <span class="pi-badge">PI · R01CA289249</span>
       </div>
       <div class="team-card reveal">
-        <div class="team-avatar">BP</div>
-        <h4>Bhavik N. Patel, MD PhD</h4>
+        <div class="team-avatar">RP</div>
+        <h4>Rahul Pannela</h4>
         <div class="role">Co-Investigator</div>
-        <div class="inst">Mayo Clinic, Scottsdale, AZ</div>
-        <div class="inst" style="margin-top:4px">Radiology · AI Imaging</div>
+        <div class="inst">Mayo Clinic</div>
       </div>
       <div class="team-card reveal">
-        <div class="team-avatar">GR</div>
-        <h4>Gokul Ramasamy, MS</h4>
-        <div class="role">Lead Research Engineer</div>
-        <div class="inst">Arizona State University</div>
-        <div class="inst" style="margin-top:4px">CT Segmentation · GNN</div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-avatar">AT</div>
-        <h4>Amara Tariq, PhD</h4>
-        <div class="role">Postdoctoral Fellow</div>
+        <div class="team-avatar">MY</div>
+        <h4>Motoyo Yano, MD PhD</h4>
+        <div class="role">Co-Investigator</div>
         <div class="inst">Mayo Clinic, Phoenix, AZ</div>
-        <div class="inst" style="margin-top:4px">Fusion Models · NLP</div>
+        <div class="inst" style="margin-top:4px">Abdominal Radiology</div>
       </div>
       <div class="team-card reveal">
-        <div class="team-avatar">RC</div>
-        <h4>Ramon Correa, PhD</h4>
-        <div class="role">Postdoctoral Fellow</div>
-        <div class="inst">Mayo Clinic · ASU</div>
-        <div class="inst" style="margin-top:4px">Algorithmic Fairness</div>
+        <div class="team-avatar">GS</div>
+        <h4>George Shih, MD</h4>
+        <div class="role">Co-Investigator</div>
+        <div class="inst">Weill Cornell Medicine</div>
+        <div class="inst" style="margin-top:4px">Radiology · AI</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">ZW</div>
+        <h4>Zhen Wang, MD</h4>
+        <div class="role">Co-Investigator</div>
+        <div class="inst">University of California, San Francisco</div>
+        <div class="inst" style="margin-top:4px">Gastroenterology</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">YP</div>
+        <h4>Yifan Peng, PhD</h4>
+        <div class="role">Multiple PI (MPI)</div>
+        <div class="inst">Weill Cornell Medicine</div>
+        <div class="inst" style="margin-top:4px">Biomedical Informatics · NLP</div>
+        <span class="pi-badge">MPI · R01CA289249</span>
       </div>
       <div class="team-card reveal">
         <div class="team-avatar">DL</div>
@@ -902,18 +924,11 @@
         <div class="inst" style="margin-top:4px">Opportunistic CT Screening</div>
       </div>
       <div class="team-card reveal">
-        <div class="team-avatar">NT</div>
-        <h4>Nancy Tan, MD</h4>
-        <div class="role">Clinical Collaborator</div>
-        <div class="inst">Mayo Clinic, Scottsdale, AZ</div>
-        <div class="inst" style="margin-top:4px">Abdominal Radiology</div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-avatar">JP</div>
-        <h4>Jialu Pi</h4>
-        <div class="role">PhD Student</div>
-        <div class="inst">Arizona State University</div>
-        <div class="inst" style="margin-top:4px">Causal Reasoning · Debiasing</div>
+        <div class="team-avatar">HD</div>
+        <h4>Hexin Dong, PhD</h4>
+        <div class="role">Postdoctoral Fellow</div>
+        <div class="inst">Weill Cornell Medicine</div>
+        <div class="inst" style="margin-top:4px">Vision-Language Models</div>
       </div>
     </div>
   </div>
@@ -930,9 +945,25 @@
       <div class="pub-item reveal">
         <div class="pub-year">2025</div>
         <div>
+          <div class="pub-title">Advancing Opportunistic PDAC Screening: Vision-Language Foundation Models Versus Conventional CNN Approaches</div>
+          <div class="pub-authors">Le D, Correa-Medero R, Ramasamy G, Joshi V, Tariq A, Peng Y, Shih G, Wang Z, Patel B, Yano M, <strong>Banerjee I</strong></div>
+          <div class="pub-journal"><em>Radiological Society of North America (RSNA) Annual Meeting</em>, 2025 <span class="pub-tag">FUSE-PDAC Direct</span> <span class="pub-award">&#9889; Cutting Edge Abstract</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2026</div>
+        <div>
+          <div class="pub-title">Pre-diagnostic imaging and radiology report&#8203;–based risk modeling for pancreatic ductal adenocarcinoma</div>
+          <div class="pub-authors">Le D, Correa-Medero R, Tariq A, Joshi VP, Murlidhar F, Dong H, Peng Y, et al., <strong>Banerjee I</strong></div>
+          <div class="pub-journal"><em>JCO Clinical Cancer Informatics</em>, 2026:e16017 <span class="pub-tag">FUSE-PDAC Direct</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2026</div>
+        <div>
           <div class="pub-title">Opportunistic Screening for Pancreatic Cancer using Computed Tomography Imaging and Radiology Reports</div>
           <div class="pub-authors">Le D, Correa-Medero R, Tariq A, Patel B, Yano M, <strong>Banerjee I</strong></div>
-          <div class="pub-journal">arXiv 2025 Mar 31 <span class="pub-tag">FUSE-PDAC Direct</span></div>
+          <div class="pub-journal"><em>AMIA Annual Symposium Proceedings</em>, vol. 2025, p. 663, 2026 <span class="pub-tag">FUSE-PDAC Direct</span> <span class="pub-award">&#127942; Homer Warner Award</span></div>
         </div>
       </div>
       <div class="pub-item reveal">
@@ -972,7 +1003,7 @@
         <div>
           <div class="pub-title">Adaptable Graph Neural Networks Design to Support Generalizability for Clinical Event Prediction</div>
           <div class="pub-authors">Tariq A, Kaur G, Su L, Gichoya J, Patel B, <strong>Banerjee I</strong></div>
-          <div class="pub-journal">Journal of Biomedical Informatics, 2025 <span class="pub-tag">GNN · Fusion</span></div>
+          <div class="pub-journal">Journal of Biomedical Informatics, 2025 <span class="pub-tag">VLM · Fusion</span></div>
         </div>
       </div>
       <div class="pub-item reveal">
@@ -1015,7 +1046,7 @@
           <div class="tl-dot now"></div>
           <div class="tl-period">Year 2 · Sep 2025 – Aug 2026</div>
           <h4>Biomarker Validation &amp; PRECISE Training (Aim 1 &amp; 2)</h4>
-          <p>Finalize CT biomarker set with pathology ground truth validation; train initial PRECISE GNN with adversarial debiasing; ablation studies comparing unimodal and fusion models.</p>
+          <p>Finalize CT biomarker set with pathology ground truth validation; train initial PRECISE vision-language model with adversarial debiasing; ablation studies comparing unimodal, CNN, and VLM fusion models.</p>
           <span class="tl-status now">⬤ Current Year</span>
         </div>
         <div class="tl-item reveal">
