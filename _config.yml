@@ -13,8 +13,8 @@ description: >
 # Set url to your GitHub Pages domain once the repo is live, e.g.:
 # url: "https://BanerjeeLabMayo.github.io"
 # baseurl: "/fuse-pdac"
-url:     ""
-baseurl: ""
+url:     "https://imonban.github.io"
+baseurl: "/PRECISE"
 
 # Author / contact
 author:
