@@ -634,6 +634,334 @@
     }
     @keyframes pulse { 0%,100% { opacity:.6 } 50% { opacity:1 } }
     .pulse { animation: pulse 2.5s ease-in-out infinite; }
+
+    /* ── STUDY FIGURE ─────────────────────────────────────── */
+    .fig-panel {
+      background: var(--navy-mid);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .fig-panel-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(0,200,224,.05);
+    }
+    .fig-panel-label {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--cyan);
+      background: rgba(0,200,224,.12);
+      border: 1px solid rgba(0,200,224,.25);
+      padding: 2px 9px;
+      border-radius: 20px;
+      letter-spacing: .06em;
+    }
+    .fig-panel-title {
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .fig-panel-body { padding: 28px 22px; }
+
+    /* Timeline (Panel A) */
+    .fig-timeline {
+      position: relative;
+      padding: 36px 0 12px;
+    }
+    .fig-tl-track {
+      position: relative;
+      height: 4px;
+      background: rgba(148,163,184,.25);
+      border-radius: 2px;
+      margin: 0 40px;
+    }
+    .fig-tl-fill {
+      position: absolute;
+      left: 0; top: 0;
+      width: 30%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan-dim), var(--cyan));
+      border-radius: 2px;
+    }
+    .fig-tl-years {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 40px 0;
+    }
+    .fig-tl-year {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--slate);
+    }
+    .fig-tl-year.hi { color: var(--cyan); font-weight: 600; }
+    .fig-tl-dot {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+    .fig-tl-dot.start {
+      left: 0%;
+      border-color: var(--cyan);
+      background: var(--navy-mid);
+      box-shadow: 0 0 0 4px rgba(0,200,224,.15);
+    }
+    .fig-tl-dot.end {
+      right: 0;
+      left: auto;
+      transform: translate(50%, -50%);
+      border-color: var(--amber);
+      background: var(--amber);
+      box-shadow: 0 0 0 4px rgba(245,158,11,.2);
+    }
+    .fig-tl-callout {
+      position: absolute;
+      top: -52px;
+      background: var(--navy-card);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: .75rem;
+      color: var(--slate);
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+    .fig-tl-callout::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 6px;
+      background: var(--rule);
+    }
+    .fig-tl-callout.right {
+      right: 0;
+      border-color: rgba(245,158,11,.3);
+      color: var(--amber);
+    }
+    .fig-tl-callout.left { left: 0; }
+    .fig-tl-arrow {
+      position: absolute;
+      top: -20px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: rgba(239,68,68,.4);
+    }
+    .fig-tl-arrow::before, .fig-tl-arrow::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 5px solid transparent;
+    }
+    .fig-tl-arrow::before { left: 0; border-right-color: rgba(239,68,68,.6); }
+    .fig-tl-arrow::after  { right: 0; border-left-color: rgba(239,68,68,.6); }
+
+    /* Model rows (Panels B & C) */
+    .fig-model-row {
+      display: grid;
+      grid-template-columns: 180px auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+    .fig-model-row + .fig-model-row { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--rule); }
+    .fig-box {
+      background: var(--navy-card);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: .8rem;
+      color: var(--slate);
+      line-height: 1.55;
+    }
+    .fig-box-title {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+    }
+    .fig-arrow-right {
+      color: var(--cyan-dim);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .fig-transform-list {
+      background: var(--navy-card);
+      border: 1px solid rgba(245,158,11,.2);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: .78rem;
+    }
+    .fig-transform-header {
+      background: rgba(245,158,11,.1);
+      color: var(--amber);
+      font-weight: 600;
+      padding: 6px 12px;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      border-bottom: 1px solid rgba(245,158,11,.15);
+    }
+    .fig-transform-list li {
+      list-style: none;
+      padding: 4px 12px;
+      color: var(--slate);
+      font-size: .77rem;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .fig-transform-list li:last-child { border-bottom: none; }
+
+    .fig-section-list {
+      background: var(--navy-card);
+      border: 1px solid rgba(0,200,224,.2);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: .78rem;
+    }
+    .fig-section-header {
+      background: rgba(0,200,224,.1);
+      color: var(--cyan);
+      font-weight: 600;
+      padding: 6px 12px;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      border-bottom: 1px solid rgba(0,200,224,.15);
+    }
+    .fig-section-list li {
+      list-style: none;
+      padding: 4px 12px;
+      color: var(--slate);
+      font-size: .77rem;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .fig-section-list li:last-child { border-bottom: none; }
+
+    /* CNN blocks */
+    .fig-cnn-blocks {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .fig-cnn-block {
+      width: 22px;
+      border-radius: 3px 3px 0 0;
+      font-size: .55rem;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 0;
+      color: var(--navy);
+      font-weight: 600;
+    }
+    .fig-cnn-block.conv   { background: rgba(0,200,224,.7);   height: 72px; }
+    .fig-cnn-block.bn     { background: rgba(148,163,184,.5); height: 60px; color: var(--white); }
+    .fig-cnn-block.relu   { background: rgba(16,185,129,.6);  height: 48px; }
+    .fig-cnn-block.pool   { background: rgba(139,92,246,.6);  height: 54px; }
+    .fig-cnn-block.avgpool{ background: rgba(16,185,129,.8);  height: 64px; }
+    .fig-cnn-block.linear { background: rgba(245,158,11,.6);  height: 44px; }
+    .fig-cnn-block.loss   { background: rgba(239,68,68,.5);   height: 38px; }
+
+    /* VLM encoder boxes */
+    .fig-vlm-enc {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .fig-enc-box {
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: .82rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .fig-enc-box.vision { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3); color: var(--amber); }
+    .fig-enc-box.text   { background: rgba(0,200,224,.1);   border: 1px solid rgba(0,200,224,.25); color: var(--cyan); }
+    .fig-embed-col {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      align-items: center;
+    }
+    .fig-embed-block {
+      width: 20px;
+      height: 14px;
+      border-radius: 2px;
+    }
+    .fig-embed-block.v { background: rgba(245,158,11,.5); }
+    .fig-embed-block.t { background: rgba(0,200,224,.4); }
+    .fig-mlp {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .fig-mlp-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .fig-mlp-node {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: rgba(16,185,129,.6);
+      border: 1px solid rgba(16,185,129,.8);
+    }
+
+    /* KM curves (Panel D) */
+    .fig-km-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .fig-km-plot {
+      background: var(--navy-card);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .fig-km-title {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .fig-km-legend {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .fig-km-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .72rem;
+      color: var(--slate);
+    }
+    .fig-km-swatch {
+      width: 20px; height: 3px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 860px) {
+      .fig-model-row { grid-template-columns: 1fr; }
+      .fig-km-grid   { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -646,6 +974,7 @@
       <li><a href="#overview">Overview</a></li>
       <li><a href="#aims">Specific Aims</a></li>
       <li><a href="#pipeline">Pipeline</a></li>
+      <li><a href="#figure">Study Design</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#milestones">Milestones</a></li>
@@ -863,6 +1192,314 @@
         <p>PRECISE interfaces with Epic via FHIR R4 APIs. Risk scores and contributing features are returned as a structured CDS Hooks card within the ordering clinician's workflow.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- STUDY FIGURE -->
+<section class="section" id="figure">
+  <div class="container">
+    <p class="eyebrow">Study Design &amp; Results</p>
+    <h2 class="section-title">PRECISE: From Pre-Diagnostic CT<br>to Stratified Risk — Four Panels</h2>
+    <p class="section-sub">Overview of the dataset construction, model architectures, and survival stratification results from internal and external validation cohorts.</p>
+
+    <!-- PANEL A -->
+    <div class="fig-panel reveal">
+      <div class="fig-panel-header">
+        <span class="fig-panel-label">A</span>
+        <span class="fig-panel-title">Pre-Diagnosis CT Dataset Construction</span>
+      </div>
+      <div class="fig-panel-body">
+        <div class="fig-timeline">
+          <div style="position:relative; margin: 40px 40px 20px;">
+            <div class="fig-tl-arrow" style="left:12%; right:5%; top:-22px;"></div>
+            <div class="fig-tl-callout left" style="top:-72px; font-size:.73rem;">
+              <strong style="color:var(--white);">Date: XX/XX/2019</strong><br>
+              Retrospectively collect patient's pre-diagnosis<br>CT Volume, radiology reports &amp; demographics.
+            </div>
+            <div class="fig-tl-callout right" style="top:-62px; font-size:.73rem;">
+              <strong>Date: XX/XX/2023</strong><br>Patient receives cancer diagnosis.
+            </div>
+            <div class="fig-tl-track">
+              <div class="fig-tl-fill"></div>
+              <div class="fig-tl-dot start"></div>
+              <div class="fig-tl-dot end"></div>
+            </div>
+            <div class="fig-tl-years">
+              <span class="fig-tl-year">2018</span>
+              <span class="fig-tl-year hi">2019</span>
+              <span class="fig-tl-year">2020</span>
+              <span class="fig-tl-year">2021</span>
+              <span class="fig-tl-year">2022</span>
+              <span class="fig-tl-year hi" style="color:var(--amber)">2023</span>
+            </div>
+            <div style="text-align:center; margin-top:10px; font-family:var(--font-mono); font-size:.72rem; color:var(--slate); letter-spacing:.06em;">TIME →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL B -->
+    <div class="fig-panel reveal">
+      <div class="fig-panel-header">
+        <span class="fig-panel-label">B</span>
+        <span class="fig-panel-title">3D-CNN Baseline Model — CT-CLIP Survival Model</span>
+      </div>
+      <div class="fig-panel-body">
+        <div style="display:grid; grid-template-columns: 200px 24px 1fr 24px 1fr; gap:12px; align-items:center; overflow-x:auto;">
+          <!-- Input -->
+          <div>
+            <div style="font-size:.72rem; color:var(--slate); margin-bottom:8px; font-family:var(--font-mono); letter-spacing:.05em;">CT VOLUME</div>
+            <div class="fig-box">
+              <div class="fig-box-title">Isotropic CT</div>
+              Volume 1mm³<br>
+              <span style="color:var(--cyan); font-size:.72rem;">→ Pancreas Segmentation</span>
+            </div>
+          </div>
+          <div class="fig-arrow-right" style="text-align:center;">→</div>
+          <!-- Preprocessing -->
+          <div>
+            <div style="font-size:.72rem; color:var(--slate); margin-bottom:8px; font-family:var(--font-mono); letter-spacing:.05em;">PREPROCESSED IMAGE</div>
+            <ul class="fig-transform-list">
+              <li class="fig-transform-header">Transformations</li>
+              <li>Cropping / Padding</li>
+              <li>HU Windowing: [−135, 215]</li>
+              <li>Intensity Normalization [0, 1]</li>
+              <li>Random Flips</li>
+            </ul>
+          </div>
+          <div class="fig-arrow-right" style="text-align:center;">→</div>
+          <!-- CNN blocks -->
+          <div>
+            <div style="font-size:.72rem; color:var(--slate); margin-bottom:8px; font-family:var(--font-mono); letter-spacing:.05em;">3D-CNN ARCHITECTURE</div>
+            <div class="fig-cnn-blocks" style="align-items:flex-end; height:88px;">
+              <div class="fig-cnn-block conv"   title="Conv3D(8)">C3D 8</div>
+              <div class="fig-cnn-block bn"     title="BatchNorm">BN</div>
+              <div class="fig-cnn-block relu"   title="ReLU">RL</div>
+              <div class="fig-cnn-block pool"   title="MaxPool3D">MP</div>
+              <div class="fig-cnn-block conv"   title="Conv3D(16)" style="height:80px">C3D 16</div>
+              <div class="fig-cnn-block bn"     title="BatchNorm">BN</div>
+              <div class="fig-cnn-block relu"   title="ReLU">RL</div>
+              <div class="fig-cnn-block pool"   title="MaxPool3D">MP</div>
+              <div class="fig-cnn-block conv"   title="Conv3D(32)" style="height:88px">C3D 32</div>
+              <div class="fig-cnn-block bn"     title="BatchNorm">BN</div>
+              <div class="fig-cnn-block relu"   title="ReLU">RL</div>
+              <div class="fig-cnn-block avgpool" title="AdaptiveAvgPool3D">AAP</div>
+              <div class="fig-cnn-block linear" title="Linear(1)">L1</div>
+              <div class="fig-cnn-block loss"   title="NPLL Loss">NLL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL C -->
+    <div class="fig-panel reveal">
+      <div class="fig-panel-header">
+        <span class="fig-panel-label">C</span>
+        <span class="fig-panel-title">Vision-Language Foundation Model — CT-CLIP + Survival MLP</span>
+      </div>
+      <div class="fig-panel-body">
+        <div style="display:grid; grid-template-columns:200px 24px 180px 24px 240px 24px 80px 24px 100px; gap:12px; align-items:center; overflow-x:auto; min-width:680px;">
+          <!-- Inputs -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <div style="font-size:.68rem; color:var(--slate); margin-bottom:6px; font-family:var(--font-mono); letter-spacing:.04em;">CT VOLUME</div>
+              <div class="fig-box" style="padding:8px 10px;">
+                <div class="fig-box-title" style="font-size:.7rem;">Isotropic CT 1mm³</div>
+                <span style="color:var(--cyan); font-size:.7rem;">→ Pancreas Segmentation</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:.68rem; color:var(--slate); margin-bottom:6px; font-family:var(--font-mono); letter-spacing:.04em;">CT RADIOLOGY REPORT</div>
+              <div class="fig-box" style="padding:8px 10px; font-size:.7rem; line-height:1.4; font-style:italic; color:rgba(148,163,184,.7);">
+                Indications: Fever, NOS/Pandemons<br>
+                Abdominal NOS/Elevated Liver Test...<br>
+                <span style="color:var(--cyan-dim);">Impressions: Findings of severe<br>pancreatitis with probable communication...</span>
+              </div>
+            </div>
+          </div>
+          <div class="fig-arrow-right" style="text-align:center; align-self:center;">→</div>
+          <!-- Preprocessing -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <div style="font-size:.68rem; color:var(--slate); margin-bottom:6px; font-family:var(--font-mono);">PREPROCESSED IMAGE</div>
+              <ul class="fig-transform-list" style="font-size:.72rem;">
+                <li class="fig-transform-header">Transformations</li>
+                <li>Cropping / Padding</li>
+                <li>HU Windowing: [−135, 215]</li>
+                <li>Intensity Norm. [0, 1]</li>
+                <li>Random Flips</li>
+              </ul>
+            </div>
+            <div>
+              <div style="font-size:.68rem; color:var(--slate); margin-bottom:6px; font-family:var(--font-mono);">PREPROCESSED SECTIONS</div>
+              <ul class="fig-section-list" style="font-size:.72rem;">
+                <li class="fig-section-header">Sections</li>
+                <li>Indications</li>
+                <li>Findings</li>
+                <li>Impressions</li>
+                <li>Pancreas</li>
+              </ul>
+            </div>
+          </div>
+          <div class="fig-arrow-right" style="text-align:center; align-self:center;">→</div>
+          <!-- CT-CLIP -->
+          <div>
+            <div style="font-size:.68rem; color:var(--slate); margin-bottom:6px; font-family:var(--font-mono);">CT-CLIP &nbsp;·&nbsp; ENCODERS → EMBEDDINGS</div>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <div class="fig-vlm-enc">
+                <div class="fig-enc-box vision">Vision Transformer</div>
+                <div class="fig-enc-box text">Text Transformer</div>
+              </div>
+              <div style="font-size:.9rem; color:var(--cyan-dim);">→</div>
+              <div class="fig-embed-col">
+                <div class="fig-embed-block v"></div>
+                <div class="fig-embed-block v"></div>
+                <div class="fig-embed-block v"></div>
+                <div class="fig-embed-block v" style="opacity:.6"></div>
+                <div class="fig-embed-block t"></div>
+                <div class="fig-embed-block t"></div>
+                <div class="fig-embed-block t"></div>
+                <div class="fig-embed-block t" style="opacity:.6"></div>
+              </div>
+            </div>
+          </div>
+          <div class="fig-arrow-right" style="text-align:center; align-self:center;">→</div>
+          <!-- Embeddings label -->
+          <div style="font-size:.65rem; color:var(--slate); text-align:center; font-family:var(--font-mono);">
+            <div style="color:var(--amber); margin-bottom:4px;">▪ Vision Emb.</div>
+            <div style="color:var(--cyan);">▪ Text Emb.</div>
+          </div>
+          <div class="fig-arrow-right" style="text-align:center; align-self:center;">→</div>
+          <!-- Survival MLP -->
+          <div>
+            <div style="font-size:.68rem; color:var(--slate); margin-bottom:8px; font-family:var(--font-mono); text-align:center;">SURVIVAL MLP</div>
+            <div class="fig-mlp" style="justify-content:center;">
+              <div class="fig-mlp-col">
+                <div class="fig-mlp-node"></div>
+                <div class="fig-mlp-node"></div>
+                <div class="fig-mlp-node"></div>
+              </div>
+              <div style="font-size:.7rem; color:var(--green);">⟶</div>
+              <div class="fig-mlp-col">
+                <div class="fig-mlp-node" style="background:rgba(245,158,11,.6); border-color:var(--amber);"></div>
+                <div class="fig-mlp-node" style="background:rgba(245,158,11,.6); border-color:var(--amber);"></div>
+              </div>
+              <div style="font-size:.7rem; color:var(--green);">⟶</div>
+              <div class="fig-mlp-col">
+                <div class="fig-mlp-node" style="background:rgba(239,68,68,.6); border-color:#ef4444;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL D -->
+    <div class="fig-panel reveal">
+      <div class="fig-panel-header">
+        <span class="fig-panel-label">D</span>
+        <span class="fig-panel-title">Stratification between High and Low-Risk Groups</span>
+      </div>
+      <div class="fig-panel-body">
+        <div class="fig-km-grid">
+          <!-- Internal -->
+          <div class="fig-km-plot">
+            <div class="fig-km-title">CT Image and Text Fusion (Internal Dataset)</div>
+            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+              <!-- Axes -->
+              <line x1="40" y1="10" x2="40" y2="155" stroke="rgba(148,163,184,.3)" stroke-width="1"/>
+              <line x1="40" y1="155" x2="290" y2="155" stroke="rgba(148,163,184,.3)" stroke-width="1"/>
+              <!-- Y axis labels -->
+              <text x="35" y="14"  text-anchor="end" font-size="8" fill="#94a3b8">1.0</text>
+              <text x="35" y="52"  text-anchor="end" font-size="8" fill="#94a3b8">0.9</text>
+              <text x="35" y="90"  text-anchor="end" font-size="8" fill="#94a3b8">0.8</text>
+              <text x="35" y="128" text-anchor="end" font-size="8" fill="#94a3b8">0.7</text>
+              <!-- X axis labels -->
+              <text x="40"  y="167" text-anchor="middle" font-size="8" fill="#94a3b8">0</text>
+              <text x="91"  y="167" text-anchor="middle" font-size="8" fill="#94a3b8">10</text>
+              <text x="142" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">20</text>
+              <text x="193" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">30</text>
+              <text x="244" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">40</text>
+              <text x="290" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">60</text>
+              <text x="165" y="178" text-anchor="middle" font-size="8" fill="#94a3b8">Time</text>
+              <!-- Grid lines -->
+              <line x1="40" y1="52"  x2="290" y2="52"  stroke="rgba(148,163,184,.08)" stroke-width="1"/>
+              <line x1="40" y1="90"  x2="290" y2="90"  stroke="rgba(148,163,184,.08)" stroke-width="1"/>
+              <line x1="40" y1="128" x2="290" y2="128" stroke="rgba(148,163,184,.08)" stroke-width="1"/>
+              <!-- Low-risk (blue) - stays high -->
+              <polyline points="40,12 65,13 91,14 116,16 142,17 168,18 193,19 219,20 244,21 270,22 290,23"
+                stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Low-risk CI band -->
+              <polygon points="40,10 65,10 91,11 116,13 142,14 168,15 193,16 219,17 244,18 270,20 290,21 290,25 270,24 244,24 219,23 193,22 168,21 142,20 116,19 91,17 65,16 40,14"
+                fill="rgba(59,130,246,.15)"/>
+              <!-- High-risk (orange) - drops faster -->
+              <polyline points="40,12 65,25 91,42 116,62 142,82 168,98 193,110 219,120 244,128 270,133 290,137"
+                stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- High-risk CI band -->
+              <polygon points="40,10 65,21 91,37 116,56 142,76 168,92 193,104 219,114 244,122 270,127 290,131 290,143 270,139 244,134 219,126 193,116 168,104 142,88 116,68 91,47 65,29 40,14"
+                fill="rgba(249,115,22,.15)"/>
+              <!-- p-value -->
+              <text x="280" y="145" text-anchor="end" font-size="7" fill="#94a3b8" font-style="italic">p = 2.64×10⁻⁵⁷</text>
+            </svg>
+            <div class="fig-km-legend">
+              <div class="fig-km-legend-item">
+                <div class="fig-km-swatch" style="background:#3b82f6;"></div>
+                <span>Low Risk (n = 628, ref)</span>
+              </div>
+              <div class="fig-km-legend-item">
+                <div class="fig-km-swatch" style="background:#f97316;"></div>
+                <span>High Risk (n = 661)</span>
+              </div>
+            </div>
+          </div>
+          <!-- External -->
+          <div class="fig-km-plot">
+            <div class="fig-km-title">CT Image and Text Fusion (External Dataset)</div>
+            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+              <line x1="40" y1="10" x2="40" y2="155" stroke="rgba(148,163,184,.3)" stroke-width="1"/>
+              <line x1="40" y1="155" x2="290" y2="155" stroke="rgba(148,163,184,.3)" stroke-width="1"/>
+              <text x="35" y="14"  text-anchor="end" font-size="8" fill="#94a3b8">1.0</text>
+              <text x="35" y="52"  text-anchor="end" font-size="8" fill="#94a3b8">0.9</text>
+              <text x="35" y="90"  text-anchor="end" font-size="8" fill="#94a3b8">0.8</text>
+              <text x="35" y="128" text-anchor="end" font-size="8" fill="#94a3b8">0.7</text>
+              <text x="40"  y="167" text-anchor="middle" font-size="8" fill="#94a3b8">0</text>
+              <text x="91"  y="167" text-anchor="middle" font-size="8" fill="#94a3b8">10</text>
+              <text x="142" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">20</text>
+              <text x="193" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">30</text>
+              <text x="244" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">40</text>
+              <text x="290" y="167" text-anchor="middle" font-size="8" fill="#94a3b8">60</text>
+              <text x="165" y="178" text-anchor="middle" font-size="8" fill="#94a3b8">Time</text>
+              <line x1="40" y1="52"  x2="290" y2="52"  stroke="rgba(148,163,184,.08)" stroke-width="1"/>
+              <line x1="40" y1="90"  x2="290" y2="90"  stroke="rgba(148,163,184,.08)" stroke-width="1"/>
+              <line x1="40" y1="128" x2="290" y2="128" stroke="rgba(148,163,184,.08)" stroke-width="1"/>
+              <!-- Low-risk (blue) -->
+              <polyline points="40,12 65,14 91,17 116,22 142,28 168,34 193,38 219,42 244,46 270,49 290,52"
+                stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <polygon points="40,10 65,11 91,14 116,18 142,24 168,30 193,34 219,38 244,42 270,45 290,48 290,56 270,53 244,50 219,46 193,42 168,38 142,32 116,26 91,20 65,17 40,14"
+                fill="rgba(59,130,246,.15)"/>
+              <!-- High-risk (orange) - drops faster for external -->
+              <polyline points="40,12 65,30 91,52 116,76 142,96 168,112 193,124 219,132 244,138 270,142 290,145"
+                stroke="#f97316" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <polygon points="40,10 65,25 91,46 116,70 142,90 168,106 193,118 219,127 244,133 270,138 290,141 290,149 270,146 244,143 219,137 193,130 168,118 142,102 116,82 91,58 65,35 40,14"
+                fill="rgba(249,115,22,.15)"/>
+              <text x="280" y="145" text-anchor="end" font-size="7" fill="#94a3b8" font-style="italic">p = 4.71×10⁻²⁷</text>
+            </svg>
+            <div class="fig-km-legend">
+              <div class="fig-km-legend-item">
+                <div class="fig-km-swatch" style="background:#3b82f6;"></div>
+                <span>Low Risk (n = 358, ref)</span>
+              </div>
+              <div class="fig-km-legend-item">
+                <div class="fig-km-swatch" style="background:#f97316;"></div>
+                <span>High Risk (n = 450)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
