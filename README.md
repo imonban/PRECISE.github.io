@@ -39,12 +39,7 @@ PDAC (pancreatic ductal adenocarcinoma) accounts for 90% of pancreatic cancers a
 ## Team
 
 - **Imon Banerjee, PhD** — PI, Mayo Clinic & ASU
-- **Bhavik N. Patel, MD PhD** — Co-I, Mayo Clinic
-- **Amara Tariq, PhD** — Postdoctoral Fellow, Mayo Clinic
-- **Ramon Correa, PhD** — Postdoctoral Fellow, Mayo Clinic/ASU
-- **David Le, PhD** — Postdoctoral Fellow, Mayo Clinic
-- **Gokul Ramasamy, MS** — Lead Research Engineer, ASU
-- **Jialu Pi** — PhD Student, ASU
+
 
 ---
 
