@@ -1,0 +1,13 @@
+# GitHub Pages configuration for FUSE-PDAC
+title: "FUSE-PDAC | R01CA289249"
+description: "Multimodal AI Fusion Model for Early Detection of Pancreatic Cancer. NIH NCI R01CA289249, PI: Imon Banerjee PhD, Mayo Clinic & Arizona State University."
+url: ""
+baseurl: ""
+
+# Exclude non-site files from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+
+# No Jekyll theme needed — pure HTML/CSS/JS

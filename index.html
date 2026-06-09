@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUSE-PDAC | R01CA289249 | Mayo Clinic · ASU</title>
+  <meta name="description" content="Multimodal AI Fusion Model for Early Detection of Pancreatic Cancer. NIH NCI R01CA289249, PI: Imon Banerjee PhD, Mayo Clinic & Arizona State University." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --navy:      #050e1f;
+      --navy-mid:  #0a1a35;
+      --navy-card: #0d2245;
+      --cyan:      #00c8e0;
+      --cyan-dim:  #0097a7;
+      --amber:     #f59e0b;
+      --amber-dim: #b45309;
+      --green:     #10b981;
+      --slate:     #94a3b8;
+      --white:     #f0f6ff;
+      --rule:      rgba(0,200,224,.18);
+
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+      --max:  1160px;
+      --r:    8px;
+    }
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    /* ── LAYOUT HELPERS ──────────────────────────────────── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 96px 0; border-top: 1px solid var(--rule); }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+    h2.section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--slate);
+      max-width: 600px;
+      margin-bottom: 52px;
+      font-size: .97rem;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5,14,31,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--cyan);
+      letter-spacing: .06em;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--slate);
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); text-decoration: none; }
+    .nav-badge {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      background: rgba(0,200,224,.12);
+      border: 1px solid rgba(0,200,224,.3);
+      color: var(--cyan);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 60px;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(0,151,167,.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-grant {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--cyan-dim);
+      letter-spacing: .1em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-grant::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 2px;
+      background: var(--cyan-dim);
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+    }
+    .hero h1 span.accent { color: var(--cyan); }
+    .hero h1 span.sub {
+      display: block;
+      font-size: clamp(1rem, 2.2vw, 1.5rem);
+      font-weight: 400;
+      color: var(--slate);
+      letter-spacing: -.01em;
+      margin-top: 10px;
+    }
+    .hero-desc {
+      max-width: 560px;
+      color: var(--slate);
+      margin: 28px 0 40px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      border-radius: var(--r);
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--navy);
+    }
+    .btn-primary:hover { background: #00e5ff; text-decoration: none; color: var(--navy); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(0,200,224,.4);
+      color: var(--cyan);
+    }
+    .btn-outline:hover { border-color: var(--cyan); background: rgba(0,200,224,.08); text-decoration: none; }
+
+    /* ── HERO STATS BAR ──────────────────────────────────── */
+    .stat-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: var(--r);
+      margin-top: 60px;
+      overflow: hidden;
+    }
+    .stat-item {
+      background: var(--navy-mid);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--amber);
+      display: block;
+    }
+    .stat-label {
+      font-size: .72rem;
+      color: var(--slate);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── FUSION DIAGRAM (signature element) ───────────────── */
+    .fusion-diagram {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto 0;
+    }
+    #fusionSvg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    /* ── OVERVIEW CARDS ──────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: var(--navy-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: rgba(0,200,224,.4); transform: translateY(-3px); }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: rgba(0,200,224,.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+    .card p { font-size: .9rem; color: var(--slate); line-height: 1.65; }
+
+    /* ── AIMS ────────────────────────────────────────────── */
+    .aims-list { display: flex; flex-direction: column; gap: 24px; }
+    .aim-item {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 0 24px;
+      background: var(--navy-mid);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color .2s;
+    }
+    .aim-item:hover { border-color: rgba(0,200,224,.35); }
+    .aim-num {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 500;
+      color: rgba(0,200,224,.3);
+      line-height: 1;
+      padding-top: 4px;
+      text-align: center;
+    }
+    .aim-label {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    .aim-item h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+    .aim-item p { font-size: .92rem; color: var(--slate); line-height: 1.65; }
+    .aim-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: .72rem;
+      font-family: var(--font-mono);
+      background: rgba(16,185,129,.12);
+      border: 1px solid rgba(16,185,129,.3);
+      color: var(--green);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── PIPELINE VISUAL ─────────────────────────────────── */
+    .pipeline-wrap {
+      background: var(--navy-mid);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 40px;
+      overflow-x: auto;
+    }
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: 680px;
+    }
+    .pipe-step {
+      flex: 1;
+      text-align: center;
+      padding: 20px 12px;
+      position: relative;
+    }
+    .pipe-step::after {
+      content: '→';
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: var(--cyan-dim);
+    }
+    .pipe-step:last-child::after { display: none; }
+    .pipe-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      margin: 0 auto 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .pipe-icon.ct   { background: rgba(0,200,224,.12); border: 1px solid rgba(0,200,224,.3); }
+    .pipe-icon.emr  { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3); }
+    .pipe-icon.bio  { background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3); }
+    .pipe-icon.gnn  { background: rgba(139,92,246,.12); border: 1px solid rgba(139,92,246,.3); }
+    .pipe-icon.out  { background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.3); }
+    .pipe-step h4 {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .pipe-step p { font-size: .73rem; color: var(--slate); }
+
+    /* ── TEAM ─────────────────────────────────────────────── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .team-card {
+      background: var(--navy-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 24px 20px;
+      transition: border-color .2s;
+    }
+    .team-card:hover { border-color: rgba(0,200,224,.35); }
+    .team-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan-dim) 0%, #1e3a5f 100%);
+      margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      font-family: var(--font-mono);
+      letter-spacing: -.02em;
+    }
+    .team-card h4 { font-size: .95rem; font-weight: 600; color: var(--white); }
+    .team-card .role {
+      font-size: .78rem;
+      color: var(--cyan);
+      font-family: var(--font-mono);
+      margin: 4px 0 8px;
+    }
+    .team-card .inst { font-size: .78rem; color: var(--slate); }
+    .team-pi .team-avatar { background: linear-gradient(135deg, var(--amber-dim) 0%, #7c2d12 100%); }
+    .pi-badge {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: .68rem;
+      font-family: var(--font-mono);
+      background: rgba(245,158,11,.12);
+      border: 1px solid rgba(245,158,11,.3);
+      color: var(--amber);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    /* ── PUBLICATIONS ─────────────────────────────────────── */
+    .pub-list { display: flex; flex-direction: column; gap: 16px; }
+    .pub-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: start;
+      background: var(--navy-mid);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 20px 22px;
+      transition: border-color .2s;
+    }
+    .pub-item:hover { border-color: rgba(0,200,224,.3); }
+    .pub-year {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--amber);
+      font-weight: 500;
+      min-width: 36px;
+      padding-top: 2px;
+    }
+    .pub-title {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 5px;
+      line-height: 1.45;
+    }
+    .pub-authors { font-size: .8rem; color: var(--slate); margin-bottom: 5px; }
+    .pub-journal {
+      font-size: .78rem;
+      font-style: italic;
+      color: var(--cyan-dim);
+    }
+    .pub-tag {
+      display: inline-block;
+      margin-left: 8px;
+      font-style: normal;
+      font-size: .68rem;
+      font-family: var(--font-mono);
+      background: rgba(0,200,224,.1);
+      border: 1px solid rgba(0,200,224,.25);
+      color: var(--cyan);
+      padding: 1px 7px;
+      border-radius: 20px;
+    }
+
+    /* ── MILESTONES ────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 36px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 0;
+      width: 2px;
+      background: var(--rule);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+    .tl-dot {
+      position: absolute;
+      left: -33px;
+      top: 5px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--cyan-dim);
+      background: var(--navy);
+    }
+    .tl-dot.done  { background: var(--green);  border-color: var(--green); }
+    .tl-dot.now   { background: var(--amber);  border-color: var(--amber); box-shadow: 0 0 0 4px rgba(245,158,11,.2); }
+    .tl-period {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--slate);
+      margin-bottom: 5px;
+    }
+    .tl-item h4 { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+    .tl-item p  { font-size: .88rem; color: var(--slate); }
+    .tl-status {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: .7rem;
+      font-family: var(--font-mono);
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+    .tl-status.done { background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.3); color: var(--green); }
+    .tl-status.now  { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3); color: var(--amber); }
+    .tl-status.soon { background: rgba(148,163,184,.1); border: 1px solid rgba(148,163,184,.2); color: var(--slate); }
+
+    /* ── CONTACT ──────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .contact-card {
+      background: var(--navy-card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .contact-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--white);
+    }
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .contact-row .label {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--cyan);
+      min-width: 60px;
+      padding-top: 2px;
+    }
+    .contact-row .val { font-size: .88rem; color: var(--slate); }
+    .contact-row .val a { color: var(--cyan); }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 40px 0;
+      color: var(--slate);
+      font-size: .82rem;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logos {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .logo-pill {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      border: 1px solid var(--rule);
+      padding: 5px 12px;
+      border-radius: 20px;
+      color: var(--slate);
+    }
+    .logo-pill.nih { border-color: rgba(245,158,11,.3); color: var(--amber); }
+    .ack {
+      font-size: .75rem;
+      color: rgba(148,163,184,.6);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .aim-item { grid-template-columns: 40px 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .stat-bar { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 540px) {
+      .stat-bar { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 2rem; }
+    }
+
+    /* ── ANIMATION ─────────────────────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal.visible { opacity: 1; transform: none; }
+    }
+
+    /* Flow animation on SVG paths */
+    .flow-path { stroke-dasharray: 8 6; animation: flowDash 1.4s linear infinite; }
+    @keyframes flowDash {
+      to { stroke-dashoffset: -280; }
+    }
+    @keyframes pulse { 0%,100% { opacity:.6 } 50% { opacity:1 } }
+    .pulse { animation: pulse 2.5s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">FUSE-PDAC</span>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#aims">Specific Aims</a></li>
+      <li><a href="#pipeline">Pipeline</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#milestones">Milestones</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="nav-badge">NCI R01CA289249</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container hero-content">
+    <p class="hero-grant">NIH / NCI &nbsp;·&nbsp; R01CA289249 &nbsp;·&nbsp; 09/2024 – 08/2029</p>
+    <h1>
+      <span class="accent">FUSE-PDAC</span>
+      <span class="sub">Multimodal AI Fusion Model for Early Detection<br>of Pancreatic Cancer</span>
+    </h1>
+    <p class="hero-desc">
+      Pancreatic ductal adenocarcinoma (PDAC) is diagnosed late in over 85% of cases, when curative resection is no longer an option. FUSE-PDAC fuses pre-cancerous CT imaging biomarkers with electronic medical record data through a graph neural network — the <strong>PRECISE</strong> model — to enable opportunistic, equitable risk stratification at population scale.
+    </p>
+    <div class="hero-ctas">
+      <a href="#aims" class="btn btn-primary">Specific Aims ↓</a>
+      <a href="https://prevention.cancer.gov/funding-and-grants/funded-grants/R01CA289249" target="_blank" rel="noopener" class="btn btn-outline">NIH Reporter ↗</a>
+      <a href="#publications" class="btn btn-outline">Publications ↗</a>
+    </div>
+
+    <div class="stat-bar">
+      <div class="stat-item">
+        <span class="stat-value">$3.1M</span>
+        <span class="stat-label">NCI Direct Costs</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">5 yr</span>
+        <span class="stat-label">Project Period</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">3</span>
+        <span class="stat-label">Specific Aims</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">4+</span>
+        <span class="stat-label">Clinical Sites</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUSION DIAGRAM -->
+<section class="section" id="overview" style="padding-top: 80px; padding-bottom: 80px;">
+  <div class="container">
+    <p class="eyebrow">The PRECISE Model</p>
+    <h2 class="section-title">Fusing Imaging &amp; Clinical Data<br>to Predict PDAC Risk</h2>
+    <p class="section-sub">The core algorithmic contribution: a multimodal graph neural network that jointly encodes abdominopelvic CT biomarkers and longitudinal EMR data to produce unbiased, patient-specific risk scores.</p>
+
+    <!-- SIGNATURE ELEMENT: Animated fusion diagram -->
+    <div class="fusion-diagram reveal">
+      <svg id="fusionSvg" viewBox="0 0 860 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background cards -->
+        <rect x="10" y="60" width="140" height="140" rx="12" fill="#0d2245" stroke="rgba(0,200,224,.25)" stroke-width="1.2"/>
+        <rect x="200" y="60" width="140" height="140" rx="12" fill="#0d2245" stroke="rgba(245,158,11,.25)" stroke-width="1.2"/>
+        <rect x="360" y="20" width="140" height="220" rx="12" fill="#0d2245" stroke="rgba(0,200,224,.5)" stroke-width="1.5"/>
+        <rect x="520" y="60" width="140" height="140" rx="12" fill="#0d2245" stroke="rgba(16,185,129,.25)" stroke-width="1.2"/>
+        <rect x="710" y="60" width="140" height="140" rx="12" fill="#0d2245" stroke="rgba(239,68,68,.25)" stroke-width="1.2"/>
+
+        <!-- CT Source -->
+        <text x="80" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" fill="#00c8e0" opacity=".85">⬡</text>
+        <text x="80" y="133" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#f0f6ff">Abdominopelvic CT</text>
+        <text x="80" y="149" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Pre-cancerous scans</text>
+        <text x="80" y="163" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Imaging biomarkers</text>
+        <text x="80" y="177" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Radiomics features</text>
+
+        <!-- EMR Source -->
+        <text x="270" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" fill="#f59e0b" opacity=".85">⬡</text>
+        <text x="270" y="133" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#f0f6ff">Electronic Health</text>
+        <text x="270" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#f0f6ff">Records (EMR)</text>
+        <text x="270" y="163" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Labs, diagnoses</text>
+        <text x="270" y="177" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Longitudinal data</text>
+
+        <!-- PRECISE Model (center) -->
+        <text x="430" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="3" fill="#00c8e0" opacity=".7">GNN · FUSION</text>
+        <text x="430" y="115" text-anchor="middle" font-family="Inter, sans-serif" font-size="17" font-weight="700" fill="#f0f6ff">PRECISE</text>
+        <text x="430" y="135" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">PancREas Cancer</text>
+        <text x="430" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">multImodal riSk</text>
+        <text x="430" y="161" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#94a3b8">prEdiction</text>
+        <rect x="380" y="183" width="100" height="22" rx="4" fill="rgba(0,200,224,.12)" stroke="rgba(0,200,224,.3)" stroke-width="1"/>
+        <text x="430" y="198" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#00c8e0">Adversarial Debiasing</text>
+        <rect x="380" y="210" width="100" height="22" rx="4" fill="rgba(139,92,246,.12)" stroke="rgba(139,92,246,.3)" stroke-width="1"/>
+        <text x="430" y="225" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#a78bfa">Graph Neural Net</text>
+
+        <!-- Validation -->
+        <text x="590" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" fill="#10b981" opacity=".85">⬡</text>
+        <text x="590" y="133" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#f0f6ff">Multi-Site</text>
+        <text x="590" y="148" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#f0f6ff">Validation</text>
+        <text x="590" y="163" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Prospective eval</text>
+        <text x="590" y="177" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Geographic diversity</text>
+
+        <!-- Output -->
+        <text x="780" y="103" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" fill="#ef4444" opacity=".85">⬡</text>
+        <text x="780" y="133" text-anchor="middle" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#f0f6ff">PDAC Risk Score</text>
+        <text x="780" y="149" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Calibrated probability</text>
+        <text x="780" y="163" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Unbiased by race/sex</text>
+        <text x="780" y="177" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Opportunistic screen</text>
+
+        <!-- Animated flow arrows CT → PRECISE -->
+        <path class="flow-path" d="M 152 130 L 358 130" stroke="#00c8e0" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- EMR → PRECISE -->
+        <path class="flow-path" d="M 342 130 L 358 130" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="flow-path" style="animation-delay:-.5s" d="M 200 130 L 358 130" stroke="#f59e0b" stroke-width="1.8"/>
+        <!-- PRECISE → Validation -->
+        <path class="flow-path" style="animation-delay:-.3s" d="M 502 130 L 518 130" stroke="#10b981" stroke-width="1.8"/>
+        <!-- Validation → Output -->
+        <path class="flow-path" style="animation-delay:-.7s" d="M 662 130 L 708 130" stroke="#ef4444" stroke-width="1.8"/>
+
+        <!-- Arrow heads -->
+        <polygon points="358,124 358,136 370,130" fill="#00c8e0" opacity=".7"/>
+        <polygon points="518,124 518,136 530,130" fill="#10b981" opacity=".7"/>
+        <polygon points="708,124 708,136 720,130" fill="#ef4444" opacity=".7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIFIC AIMS -->
+<section class="section" id="aims">
+  <div class="container">
+    <p class="eyebrow">Specific Aims</p>
+    <h2 class="section-title">Three Aims, One Goal:<br>Catch PDAC Before It's Too Late</h2>
+    <p class="section-sub">Each aim builds toward a deployable, fair, prospectively validated risk prediction tool embedded in routine clinical CT workflows.</p>
+
+    <div class="aims-list">
+      <div class="aim-item reveal">
+        <div class="aim-num">01</div>
+        <div>
+          <p class="aim-label">Aim 1 · Biomarker Discovery</p>
+          <h3>Extract and Validate Pre-Cancerous CT Imaging Biomarkers</h3>
+          <p>Develop and validate a deep learning pipeline to extract quantitative imaging biomarkers — parenchymal texture, ductal morphology, peripancreatic fat infiltration, and vascular geometry — from abdominopelvic CTs acquired 6–36 months before PDAC diagnosis. Biomarkers will be validated against histopathological ground truth across multi-institutional datasets.</p>
+          <span class="aim-tag">CT · Radiomics · Deep Learning</span>
+        </div>
+      </div>
+      <div class="aim-item reveal">
+        <div class="aim-num">02</div>
+        <div>
+          <p class="aim-label">Aim 2 · Multimodal Fusion Model</p>
+          <h3>Develop PRECISE: A Fair, Graph-Based Multimodal Risk Model</h3>
+          <p>Train the PRECISE graph neural network to fuse imaging biomarkers (Aim 1) with longitudinal EMR features — CA19-9 trajectories, diabetes onset patterns, weight loss signals, and prior pancreatitis history. Incorporate adversarial debiasing to ensure equitable performance across race, sex, and socioeconomic strata. Benchmark against clinical risk scores (ENDPAC, CAPS) and unimodal AI baselines.</p>
+          <span class="aim-tag">GNN · EMR · Fairness · Graph Fusion</span>
+        </div>
+      </div>
+      <div class="aim-item reveal">
+        <div class="aim-num">03</div>
+        <div>
+          <p class="aim-label">Aim 3 · Prospective Deployment</p>
+          <h3>Prospective Multi-Site Validation and Deployment</h3>
+          <p>Deploy PRECISE prospectively across geographically and demographically diverse clinical sites, including Mayo Clinic (Arizona, Minnesota), partner academic medical centers, and a community health system. Assess real-world calibration, net benefit in decision curve analysis, and disparities in model performance by site, race/ethnicity, and sex over a 24-month follow-up period.</p>
+          <span class="aim-tag">Prospective · Multi-Site · Deployment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="section" id="pipeline">
+  <div class="container">
+    <p class="eyebrow">Technical Pipeline</p>
+    <h2 class="section-title">From Routine CT to Risk Score</h2>
+    <p class="section-sub">The PRECISE pipeline is designed for opportunistic deployment — patients undergoing routine abdominopelvic CT for non-pancreatic indications are automatically screened.</p>
+
+    <div class="pipeline-wrap reveal">
+      <div class="pipeline">
+        <div class="pipe-step">
+          <div class="pipe-icon ct">🩻</div>
+          <h4>CT Acquisition</h4>
+          <p>Routine abdomino-pelvic CT, portal venous phase</p>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon ct">🧠</div>
+          <h4>Image Segmentation</h4>
+          <p>Auto-segmentation of pancreas, ducts, vasculature</p>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon emr">📋</div>
+          <h4>EMR Extraction</h4>
+          <p>Longitudinal labs, diagnoses, medications, NLP</p>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon gnn">🔗</div>
+          <h4>PRECISE GNN</h4>
+          <p>Graph fusion with adversarial debiasing</p>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon out">📊</div>
+          <h4>Risk Score</h4>
+          <p>Calibrated 3-yr PDAC risk, EHR-integrated report</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-grid" style="margin-top: 24px;">
+      <div class="card reveal">
+        <div class="card-icon">⚖️</div>
+        <h3>Equity by Design</h3>
+        <p>Adversarial debiasing is embedded in training, not post-hoc. The model is penalized during training if subgroup AUC diverges beyond a pre-specified fairness threshold across race, sex, and BMI strata.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🔬</div>
+        <h3>Explainable Outputs</h3>
+        <p>SHAP-based feature attribution surfaces the top contributing imaging and clinical factors for each prediction, enabling radiologist review and physician trust calibration.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">🔌</div>
+        <h3>EHR Integration</h3>
+        <p>PRECISE interfaces with Epic via FHIR R4 APIs. Risk scores and contributing features are returned as a structured CDS Hooks card within the ordering clinician's workflow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="container">
+    <p class="eyebrow">Research Team</p>
+    <h2 class="section-title">Investigators &amp; Collaborators</h2>
+    <p class="section-sub">An interdisciplinary team spanning AI, radiology, gastroenterology, biostatistics, and health equity research across Mayo Clinic and Arizona State University.</p>
+
+    <div class="team-grid">
+      <div class="team-card team-pi reveal">
+        <div class="team-avatar">IB</div>
+        <h4>Imon Banerjee, PhD</h4>
+        <div class="role">Principal Investigator</div>
+        <div class="inst">Mayo Clinic · Arizona State University</div>
+        <span class="pi-badge">PI · R01CA289249</span>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">BP</div>
+        <h4>Bhavik N. Patel, MD PhD</h4>
+        <div class="role">Co-Investigator</div>
+        <div class="inst">Mayo Clinic, Scottsdale, AZ</div>
+        <div class="inst" style="margin-top:4px">Radiology · AI Imaging</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">GR</div>
+        <h4>Gokul Ramasamy, MS</h4>
+        <div class="role">Lead Research Engineer</div>
+        <div class="inst">Arizona State University</div>
+        <div class="inst" style="margin-top:4px">CT Segmentation · GNN</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">AT</div>
+        <h4>Amara Tariq, PhD</h4>
+        <div class="role">Postdoctoral Fellow</div>
+        <div class="inst">Mayo Clinic, Phoenix, AZ</div>
+        <div class="inst" style="margin-top:4px">Fusion Models · NLP</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">RC</div>
+        <h4>Ramon Correa, PhD</h4>
+        <div class="role">Postdoctoral Fellow</div>
+        <div class="inst">Mayo Clinic · ASU</div>
+        <div class="inst" style="margin-top:4px">Algorithmic Fairness</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">DL</div>
+        <h4>David Le, PhD</h4>
+        <div class="role">Postdoctoral Fellow</div>
+        <div class="inst">Mayo Clinic, Phoenix, AZ</div>
+        <div class="inst" style="margin-top:4px">Opportunistic CT Screening</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">NT</div>
+        <h4>Nancy Tan, MD</h4>
+        <div class="role">Clinical Collaborator</div>
+        <div class="inst">Mayo Clinic, Scottsdale, AZ</div>
+        <div class="inst" style="margin-top:4px">Abdominal Radiology</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">JP</div>
+        <h4>Jialu Pi</h4>
+        <div class="role">PhD Student</div>
+        <div class="inst">Arizona State University</div>
+        <div class="inst" style="margin-top:4px">Causal Reasoning · Debiasing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="container">
+    <p class="eyebrow">Related Publications</p>
+    <h2 class="section-title">Key Prior &amp; Emerging Work</h2>
+    <p class="section-sub">Selected publications from the team directly relevant to the science of FUSE-PDAC, including opportunistic CT screening, multimodal fusion, and fairness in AI.</p>
+
+    <div class="pub-list">
+      <div class="pub-item reveal">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">Opportunistic Screening for Pancreatic Cancer using Computed Tomography Imaging and Radiology Reports</div>
+          <div class="pub-authors">Le D, Correa-Medero R, Tariq A, Patel B, Yano M, <strong>Banerjee I</strong></div>
+          <div class="pub-journal">arXiv 2025 Mar 31 <span class="pub-tag">FUSE-PDAC Direct</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">MOSCARD — Multimodal Opportunistic Screening for Cardiovascular Adverse Events with Causal Reasoning and De-confounding</div>
+          <div class="pub-authors">Pi J, Farina JM, … Arsanjani R, <strong>Banerjee I</strong></div>
+          <div class="pub-journal">MICCAI 2025 (LNCS 15967) <span class="pub-tag">Related Methods</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Mitigating Bias in Opportunistic Screening for MACE with Causal Reasoning</div>
+          <div class="pub-authors">Pi J, Farina JM, Chao CJ, Ayoub C, Arsanjani R, <strong>Banerjee I</strong></div>
+          <div class="pub-journal">IEEE Transactions on Artificial Intelligence, 2025 <span class="pub-tag">Fairness · Causal AI</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Opportunistic Screening for ASCVD using a Multimodal Deep Learning Risk Prediction Model (R01 HL167811)</div>
+          <div class="pub-authors">Zambrano Chaves JM, Wentland AL, … Patel BN<sup>#</sup>, <strong>Banerjee I<sup>#</sup></strong></div>
+          <div class="pub-journal">Scientific Reports, 2023 <span class="pub-tag">Opportunistic Screening</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Efficient Adversarial Debiasing with Concept Activation Vector — Medical Image Case-Studies</div>
+          <div class="pub-authors">Correa R, Pahwa K, Patel B, Vachon CM, Gichoya JW, <strong>Banerjee I</strong></div>
+          <div class="pub-journal">Journal of Biomedical Informatics, 2024 <span class="pub-tag">Debiasing Methods</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Adaptable Graph Neural Networks Design to Support Generalizability for Clinical Event Prediction</div>
+          <div class="pub-authors">Tariq A, Kaur G, Su L, Gichoya J, Patel B, <strong>Banerjee I</strong></div>
+          <div class="pub-journal">Journal of Biomedical Informatics, 2025 <span class="pub-tag">GNN · Fusion</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2023</div>
+        <div>
+          <div class="pub-title">Opportunistic Screening for Low Bone Density using Abdominopelvic Computed Tomography Scans</div>
+          <div class="pub-authors">Tariq A, Patel BN, Sensakovic WF, Fahrenholtz SJ, <strong>Banerjee I</strong></div>
+          <div class="pub-journal">Medical Physics, 2023 <span class="pub-tag">Opportunistic CT</span></div>
+        </div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-year">2023</div>
+        <div>
+          <div class="pub-title">"Shortcuts" Causing Bias in Radiology Artificial Intelligence: Causes, Evaluation, and Mitigation</div>
+          <div class="pub-authors"><strong>Banerjee I</strong>, Bhattacharjee K, Burns JL, Trivedi H, Purkayastha S, et al.</div>
+          <div class="pub-journal">Journal of the American College of Radiology, 2023 <span class="pub-tag">AI Bias · Radiology</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section class="section" id="milestones">
+  <div class="container">
+    <p class="eyebrow">Project Timeline</p>
+    <h2 class="section-title">Milestones &amp; Progress</h2>
+    <p class="section-sub">Project period: September 2024 – August 2029. Year 1 focus is dataset assembly, segmentation pipeline development, and IRB coordination across sites.</p>
+
+    <div style="max-width: 680px;">
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot done"></div>
+          <div class="tl-period">Year 1 · Sep 2024 – Aug 2025</div>
+          <h4>Project Launch &amp; Data Infrastructure</h4>
+          <p>IRB approvals at all sites; retrospective PDAC cohort assembly (≥1,200 cases + 4:1 controls); CT segmentation pipeline development; baseline imaging biomarker extraction; EMR data harmonization to OMOP CDM.</p>
+          <span class="tl-status done">✓ In Progress</span>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot now"></div>
+          <div class="tl-period">Year 2 · Sep 2025 – Aug 2026</div>
+          <h4>Biomarker Validation &amp; PRECISE Training (Aim 1 &amp; 2)</h4>
+          <p>Finalize CT biomarker set with pathology ground truth validation; train initial PRECISE GNN with adversarial debiasing; ablation studies comparing unimodal and fusion models.</p>
+          <span class="tl-status now">⬤ Current Year</span>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Year 3 · Sep 2026 – Aug 2027</div>
+          <h4>Model Refinement &amp; Internal Validation</h4>
+          <p>Hyperparameter tuning; fairness analysis by race/sex/site; comparison vs. ENDPAC and CAPS clinical scores; SHAP explainability integration; FHIR CDS Hooks API development.</p>
+          <span class="tl-status soon">Upcoming</span>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Year 4 · Sep 2027 – Aug 2028</div>
+          <h4>Prospective Deployment — Aim 3</h4>
+          <p>Begin prospective validation at 4+ sites; integrate PRECISE into Epic EHR workflow; enroll first 500 prospective subjects; interim analysis at 12 months with DSMB review.</p>
+          <span class="tl-status soon">Upcoming</span>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Year 5 · Sep 2028 – Aug 2029</div>
+          <h4>Final Validation, Dissemination &amp; Open-Source Release</h4>
+          <p>Complete 24-month follow-up; final performance and equity analyses; manuscript submissions; open-source model release via GitHub; NCI progress report and renewal preparation.</p>
+          <span class="tl-status soon">Upcoming</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <p class="eyebrow">Contact &amp; Resources</p>
+    <h2 class="section-title">Collaborate With Us</h2>
+    <p class="section-sub">We welcome collaborations from clinical sites, computational researchers, and patient advocacy organizations. Data sharing agreements are available for qualified institutions.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <h3>Principal Investigator</h3>
+        <div class="contact-row">
+          <span class="label">Name</span>
+          <span class="val">Imon Banerjee, PhD</span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Email</span>
+          <span class="val"><a href="mailto:Banerjee.Imon@mayo.edu">Banerjee.Imon@mayo.edu</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Inst.</span>
+          <span class="val">Department of Radiology &amp; AI and Informatics<br>Mayo Clinic, Scottsdale, AZ 85259</span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Also</span>
+          <span class="val">School of Computing &amp; Augmented Intelligence<br>Arizona State University, Tempe, AZ</span>
+        </div>
+      </div>
+      <div class="contact-card reveal">
+        <h3>Grant Information</h3>
+        <div class="contact-row">
+          <span class="label">Grant</span>
+          <span class="val">R01CA289249</span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Funder</span>
+          <span class="val">National Cancer Institute (NCI), NIH</span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Period</span>
+          <span class="val">09/01/2024 – 08/31/2029</span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Links</span>
+          <span class="val">
+            <a href="https://prevention.cancer.gov/funding-and-grants/funded-grants/R01CA289249" target="_blank" rel="noopener">NCI Grant Page ↗</a><br>
+            <a href="https://reporter.nih.gov" target="_blank" rel="noopener">NIH Reporter ↗</a>
+          </span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Code</span>
+          <span class="val"><a href="https://github.com/BanerjeeLabMayo" target="_blank" rel="noopener">github.com/BanerjeeLabMayo ↗</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-logos" style="margin-bottom:10px">
+        <span class="logo-pill nih">NCI · R01CA289249</span>
+        <span class="logo-pill">Mayo Clinic</span>
+        <span class="logo-pill">Arizona State University</span>
+      </div>
+      <p class="ack">
+        This project is supported by the National Cancer Institute of the National Institutes of Health under Award Number R01CA289249. The content is solely the responsibility of the authors and does not necessarily represent the official views of the NIH.
+      </p>
+    </div>
+    <div style="text-align:right; color: rgba(148,163,184,.5); font-size:.75rem; font-family:'JetBrains Mono',monospace;">
+      FUSE-PDAC<br>
+      Last updated 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
