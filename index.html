@@ -11,9 +11,9 @@
   <style>
     /* ── TOKENS ─────────────────────────────────────────── */
     :root {
-      --navy:      #050e1f;
-      --navy-mid:  #0a1a35;
-      --navy-card: #0d2245;
+      --navy:      #1a3260;
+      --navy-mid:  #1f3d70;
+      --navy-card: #254480;
       --cyan:      #00c8e0;
       --cyan-dim:  #0097a7;
       --amber:     #f59e0b;
@@ -21,7 +21,7 @@
       --green:     #10b981;
       --slate:     #94a3b8;
       --white:     #f0f6ff;
-      --rule:      rgba(0,200,224,.18);
+      --rule:      rgba(0,200,224,.28);
 
       --font-body:    'Inter', system-ui, sans-serif;
       --font-mono:    'JetBrains Mono', 'Courier New', monospace;
@@ -625,6 +625,8 @@
     @media (prefers-reduced-motion: no-preference) {
       .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
       .reveal.visible { opacity: 1; transform: none; }
+      /* Figure panels: never hide — they're long content that may not trigger observer */
+      .fig-panel.reveal { opacity: 1; transform: none; }
     }
 
     /* Flow animation on SVG paths */
@@ -1798,9 +1800,19 @@
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Fallback: if IntersectionObserver doesn't fire (e.g. already in viewport
+  // on load, or reduced-motion), make all fig-panel reveals visible immediately
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.fig-panel.reveal').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 100);
+  });
 </script>
 </body>
 </html>
